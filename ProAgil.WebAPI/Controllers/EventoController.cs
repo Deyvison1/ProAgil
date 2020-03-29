@@ -122,7 +122,7 @@ namespace ProAgil.WebAPI.Controllers
                 var evento = await _repo.GetAllEventosAsyncById(EventoId, false);
                 if (evento == null) return NotFound();
 
-                _repo.Update(evento);
+                _repo.Delete(evento);
 
                 if (await _repo.SaveChangerAsync())
                 {

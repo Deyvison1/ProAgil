@@ -28,7 +28,7 @@ export class EventosComponent implements OnInit {
   mostrarImagem = false;
   registerForm: FormGroup;
   bodyDeletarEvento = '';
-  
+
   _filtroLista: string;
 
   constructor(
@@ -65,7 +65,7 @@ export class EventosComponent implements OnInit {
   excluirEvento(evento: Evento, template: any) {
     this.openModal(template);
     this.evento = evento;
-    this.bodyDeletarEvento = `Tem certeza que deseja excluir o Evento: ${evento.tema}, Código: ${evento.tema}`;
+    this.bodyDeletarEvento = `Tem certeza que deseja excluir o Evento: ${evento.tema}, Código: ${evento.id}`;
   }
 
   confirmeDelete(template: any) {
