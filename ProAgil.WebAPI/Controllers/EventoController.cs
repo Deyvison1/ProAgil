@@ -71,7 +71,6 @@ namespace ProAgil.WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(EventoDto model)
         {
-
             try
             {
                 var evento = _mapper.Map<Evento>(model);
