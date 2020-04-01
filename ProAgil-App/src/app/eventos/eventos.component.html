@@ -47,7 +47,8 @@
       <td>{{ evento.id }}</td>
       <td>{{ evento.tema }}</td>
       <td>{{ evento.local }}</td>
-      <td>{{ evento.dataEvento | DateTimeFormatPipe }}</td>
+      <td>
+        {{ evento.dataEvento}}</td>
       <td>{{ evento.qtdPessoas }}</td>
       <td>
         <div *ngIf="!evento.lotes.length">
@@ -180,10 +181,11 @@
             <div class="form-group col-md-4">
               <label>Data e Hora</label>
               <input
-                type="text"
+                type="text" class="form-control"
                 bsDatepicker
-                [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY hh:mm' }"
-                class="form-control"
+                value="{{ dataEvento | DateTimeFormatPipe }}"
+                [(ngModel)]="dataEvento"
+                [bsConfig]="{dateInputFormat : 'DD/MM/YYYY hh:mm'}"
                 [ngClass]="{
                   'is-invalid':
                     registerForm.get('dataEvento').errors &&
