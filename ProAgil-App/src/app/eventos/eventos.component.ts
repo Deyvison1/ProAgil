@@ -1,8 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { EventoService } from '../_services/evento.service';
 import { Evento } from '../_models/Evento';
-import { BsModalRef , BsModalService } from 'ngx-bootstrap/modal';
-import { FormGroup , Validators, FormBuilder } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
@@ -17,6 +17,9 @@ defineLocale('pt-br', ptBrLocale);
   styleUrls: ["./eventos.component.css"]
 })
 export class EventosComponent implements OnInit {
+
+  titulo = 'Eventos';
+
   eventosFiltrados: Evento[];
   eventos: Evento[];
 
@@ -74,13 +77,13 @@ export class EventosComponent implements OnInit {
   confirmeDelete(template: any) {
     this.eventoService.deleteEvento(this.evento.id).subscribe(
       () => {
-          template.hide();
-          this.getEventos();
-          this.toastr.success('Deletado com Sucesso');
-        }, error => {
-          this.toastr.error(`Erro ao tentar deletar: ${error}`);
-          console.log(error);
-        }
+        template.hide();
+        this.getEventos();
+        this.toastr.success('Deletado com Sucesso');
+      }, error => {
+        this.toastr.error(`Erro ao tentar deletar: ${error}`);
+        console.log(error);
+      }
     );
   }
 
@@ -118,8 +121,8 @@ export class EventosComponent implements OnInit {
 
   salvarAlteracao(template: any) {
     if (this.registerForm.valid) {
-        if (this.modoSalvar === 'post') {
-        this.evento = Object.assign({ }, this.registerForm.value);
+      if (this.modoSalvar === 'post') {
+        this.evento = Object.assign({}, this.registerForm.value);
         this.eventoService.postEvento(this.evento).subscribe(
           (novoEvento: Evento) => {
             template.hide();
