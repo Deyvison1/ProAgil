@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Http;
 using AutoMapper;
 using ProAgil.WebAPI.Dtos;
 using System.Collections.Generic;
+using System.IO;
+using System.Net.Http.Headers;
+
 namespace ProAgil.WebAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -36,6 +39,31 @@ namespace ProAgil.WebAPI.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, $"Banco de Dados Falhou {ex.Message}");
             }
 
+        }
+        [HttpPost("upload")]
+        public async Task<IActionResult> upload()
+        {
+            try
+            {
+                var file = Request.Form.Files[0];
+                var folderName = Path.Combine("Resources" , "Imagens");
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+                if(file.Length > 0) {
+                    var filename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName;
+                    var fullPath = Path.Combine(pathToSave, filename.Replace("\""," ").Trim());
+
+                    using(var stream = new FileStream(fullPath, FileMode.Create)) {
+                        file.CopyTo(stream);
+                    }
+                }
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Banco de Dados Falhou {ex.Message}");
+            }
+            return BadRequest("Erro ao tentar realizar upload");
         }
         [HttpGet("{EventoId}")]
         public async Task<IActionResult> Get(int EventoId)
