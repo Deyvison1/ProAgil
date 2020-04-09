@@ -2,7 +2,8 @@ import { Lote } from './Lote';
 import { Palestrante } from './Palestrante';
 import { RedeSocial } from './RedeSocial';
 
-export interface Evento {
+export class Evento {
+     constructor() {}
      id: number;
      local: string;
      dataEvento: Date;
@@ -12,6 +13,6 @@ export interface Evento {
      telefone: string;
      email: string;
      lotes: Lote[];
-     redeSocialRedesSociais: RedeSocial[];
+     redesSociais: RedeSocial[];
      palestranteEventoPalestrantesEventos: Palestrante[];
 }
