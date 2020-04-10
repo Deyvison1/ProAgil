@@ -119,11 +119,11 @@ export class EventoEditComponent implements OnInit {
     this.redesSociais.removeAt(id);
   }
 
-  onFileChange(enveto: any, file: FileList) {
+  onFileChange(file: FileList) {
     const reader = new FileReader();
 
     reader.onload = (event: any) => this.imagemURL = event.target.result;
-    this.file = event.target.files;
+    //this.file = event.target.files;
     reader.readAsDataURL(file[0]);
   }
 

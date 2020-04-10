@@ -9,7 +9,7 @@
     <form [formGroup]="registerForm">
       <div class="form-group required">
         <label for="">Nome Completo:</label>
-        <input type="text" class="form-control" formControlName="fullName"
+        <input type="text" autofocus class="form-control" formControlName="fullName"
         [ngClass]="{'is-invalid': registerForm.get('fullName').errors &&
                                   registerForm.get('fullName').touched }"
           placeholder="Insira o Nome Completo"/>

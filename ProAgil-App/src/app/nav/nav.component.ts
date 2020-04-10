@@ -20,6 +20,10 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
 
+  showMenu() {
+    return this.router.url !== '/user/login';
+  }
+
   entrar() {
     this.router.navigate(['/user/login']);
   }
